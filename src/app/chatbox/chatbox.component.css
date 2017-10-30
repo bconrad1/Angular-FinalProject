@@ -1,0 +1,117 @@
+body{
+    height:500px;
+    position: fixed;
+    bottom: 0;
+    right:0px;
+}
+
+.icon{
+    margin:0px !important;
+}
+
+.chatContainer{
+    margin-bottom: 0px;
+    border: 1px solid;
+    border-color: #ccc;
+}
+
+.chat{
+    bottom:0;
+    position:fixed;
+    float:right;
+    right:0px;
+    margin-left:10px;
+    max-width:500px;
+
+}
+.collapseIcon{
+    text-align:right;
+}
+.buttonIcon{
+    border-radius:100px;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  background-color: #253B40;
+}
+
+.btn-circle:hover{
+    background-color: #7B9EA6;
+}
+
+.hideBox{
+    display:none;
+}
+
+.messageContainer{
+  background:white;
+  max-height:300px;
+  overflow-x:hidden;
+}
+.topBar {
+  background: #486B73;
+  color: white;
+  padding: 10px;
+  position: relative;
+
+}
+
+.sent{
+    padding-bottom:20px !important;
+    margin-right:0;
+}
+
+.message{
+    margin:5px;
+    margin-left:15px;
+    margin-right:15px;
+}
+.messages {
+  background: #eee;
+  padding: 10px;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  max-width:100%;
+}
+.messages > p {
+    font-size: 13px;
+    margin: 0 0 0.2rem 0;
+  }
+
+time {
+    font-size: 11px;
+    color: #999;
+}
+.messageContainerInner{
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+}
+
+.base_sent1{
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.base_sent2{
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.sent > time{
+    float: right;
+}
+
+
+.send{
+    background-color: #486B73;
+}
+
+

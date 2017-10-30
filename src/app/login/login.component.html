@@ -1,0 +1,30 @@
+<div style="display:flex; align-items:center; height:100%">
+<div class="loginContainer ui middle aligned center aligned grid" >
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <div class="content">
+          <h2 class="text"><i class="privacy icon"></i>
+          Log-in </h2>
+        </div>
+      <form class="ui large form" *ngIf="!authService.getUser()">
+        <div class="ui segment segment2">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="text" placeholder="UserName"  name="username" #username>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" placeholder="Password" name="password" #password>
+            </div>
+          </div>
+          <app-two-button btn1="Submit" btn2="Forgot Password"></app-two-button>
+        </div>
+        <div class="ui error message"></div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

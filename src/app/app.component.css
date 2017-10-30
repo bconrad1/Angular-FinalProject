@@ -1,0 +1,27 @@
+.header{
+    font-size: 20px;
+}
+
+.item.hover{
+    background-color:"red";
+}
+
+.nameStyle {
+    font-weight:700;
+    margin:0px;
+}
+
+.clock{
+    padding-right:0px!important;
+}
+
+.segment{
+    background-color: #ececec;
+}
+
+
+/*I didn't want to use important but for the time being its the only way around the semantic-ui theme*/
+.activeNav{
+    background-color: #486B73 !important;
+    color: white !important;
+}

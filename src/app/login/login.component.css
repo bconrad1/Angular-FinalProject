@@ -1,0 +1,41 @@
+.column {
+      max-width: 450px;
+    }
+
+.content{
+    margin: 10px;
+}
+
+.middle{
+    width: 100%;
+    
+}
+
+.loginContainer{
+    width: 500px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 5px;
+    border:1px solid;
+    border-color:#cecece;
+  
+}
+
+.text{
+    color:#486B73;
+    margin-bottom:30px;
+}
+
+.segment{
+    background-color: #ececec;
+}
+
+.button{
+    background-color: #486B73;
+    color:White;
+}
+
+.button:hover{
+    background-color: #253B40;
+    color:white;
+}
