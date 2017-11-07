@@ -11,14 +11,29 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ChatboxService } from './services/chatbox.service';
 import { TwoButtonComponent } from './two-button/two-button.component';
+import { DataViewComponent } from './data-view/data-view.component';
+import { DataService } from './services/data.service'
+import { AngelFire } from './services/angelfire.service'
+import { PapaParseService } from 'ngx-papaparse';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 const routes: Routes =[
 
  { path: 'login', component: LoginComponent },
- { path: 'home', component: DashboardComponent },
+ { path: 'home', component: DataViewComponent },
  { path: 'settings', component: SettingsComponent },
  { path: '', redirectTo: 'login', pathMatch: 'full' }, 
 
 ]
+export const firebaseConfig = {
+  apiKey: "AIzaSyCN8YG4NesEaBBZeECqGrPtOPSZDvdD-YE",
+  authDomain: "studentsurveyfinal.firebaseapp.com",
+  databaseURL: "https://studentsurveyfinal.firebaseio.com",
+  storageBucket: "studentsurveyfinal.appspot.com",
+  messagingSenderId: "885302863045",
+  projectId: "studentsurveyfinal",
+};
 
 @NgModule({
   declarations: [
@@ -27,15 +42,18 @@ const routes: Routes =[
     ChatboxComponent,
     DashboardComponent,
     SettingsComponent,
-    TwoButtonComponent
+    TwoButtonComponent,
+    DataViewComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, ChatboxService],
+  providers: [AuthService, ChatboxService, DataService, PapaParseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
