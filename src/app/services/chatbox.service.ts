@@ -7,21 +7,13 @@ export class ChatboxService {
     
     constructor(){
 
-        this.chatHistory.unshift(new Chatbox("Ben","This is only a test for now",this.getDate(),1))
-        this.chatHistory.unshift(new Chatbox("Ben","Eventually there will be more, but this is only a placeholder.",this.getDate(),1))
-        this.chatHistory.unshift(new Chatbox("Ben","Here is a random fact so I can use space: The numbers '172' can be found on the back of the U.S. $5 dollar bill in the bushes at the base of the Lincoln Memorial.",this.getDate(),1))
-         this.chatHistory.unshift(new Chatbox("John","Last one to demonstate a different user.",this.getDate(),2))
+        this.chatHistory.unshift(new Chatbox("HelpBot","Here are some common things you can send!",this.getDate(),1))
+        this.chatHistory.unshift(new Chatbox("HelpBot", "1. Watch a video of the launch. Type: Flight # - video", this.getDate(),1))
+        this.chatHistory.unshift(new Chatbox("HelpBot", "2. Read an article. Type: Flight # - article", this.getDate(),1))
+
     }
 
-    getChatHistory(){
-
-        
-        // for (var _i = this.chatHistory.length; _i >=0; _i--) {
-        //     var item = this.chatHistory[_i];
-        //     console.log(item)
-        //     returnChat.push(item);
-        // }
-        
+    getChatHistory(){       
         return this.chatHistory;
     }
 
@@ -53,6 +45,6 @@ export class ChatboxService {
     returnChat(){
         this.chatHistory.unshift(new Chatbox('John',"This is an automated reply.",this.getDate(),2))
     }
-
+    
 
 }

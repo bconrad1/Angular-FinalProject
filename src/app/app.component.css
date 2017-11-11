@@ -22,6 +22,11 @@
 
 /*I didn't want to use important but for the time being its the only way around the semantic-ui theme*/
 .activeNav{
-    background-color: #486B73 !important;
+    background-color: #005288 !important;
     color: white !important;
 }
+
+.headerLogo{
+    width:200px;
+}
+

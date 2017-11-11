@@ -17,13 +17,17 @@ import { AngelFire } from './services/angelfire.service'
 import { PapaParseService } from 'ngx-papaparse';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+ import { LoggedInGuard } from './services/logged-in.guard';
+
 
 const routes: Routes =[
 
- { path: 'login', component: LoginComponent },
- { path: 'home', component: DataViewComponent },
- { path: 'settings', component: SettingsComponent },
- { path: '', redirectTo: 'login', pathMatch: 'full' }, 
+ { path: 'login', component: LoginComponent},
+ { path: 'home', component: DataViewComponent,  canActivate: [ LoggedInGuard]},
+ { path: 'settings', component: SettingsComponent, canActivate: [ LoggedInGuard]},
+ { path: '', redirectTo: 'login', pathMatch: 'full', canActivate: [ LoggedInGuard]}, 
 
 ]
 export const firebaseConfig = {
@@ -49,11 +53,12 @@ export const firebaseConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
+    AngularFireAuthModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, ChatboxService, DataService, PapaParseService],
+  providers: [AuthService, ChatboxService, DataService, PapaParseService, AngularFireDatabase,LoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

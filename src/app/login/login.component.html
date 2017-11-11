@@ -1,26 +1,27 @@
-<div style="display:flex; align-items:center; height:100%">
-<div class="loginContainer ui middle aligned center aligned grid" >
+<div style="display:flex; align-items:center; height:100%" *ngIf="!loggedIn()">
+<div class="loginContainer ui middle aligned center aligned grid"  >
   <div class="ui middle aligned center aligned grid">
     <div class="column">
         <div class="content">
           <h2 class="text"><i class="privacy icon"></i>
           Log-in </h2>
         </div>
-      <form class="ui large form" *ngIf="!authService.getUser()">
+      <form class="ui large form">
         <div class="ui segment segment2">
           <div class="field">
             <div class="ui left icon input">
               <i class="user icon"></i>
-              <input type="text" placeholder="UserName"  name="username" #username>
+              <input type="text" placeholder="Email"   [(ngModel)]="email"  name="email">
             </div>
           </div>
           <div class="field">
             <div class="ui left icon input">
               <i class="lock icon"></i>
-              <input type="password" placeholder="Password" name="password" #password>
+              <input type="password" placeholder="Password"  [(ngModel)]="password" name="password">
             </div>
           </div>
-          <app-two-button btn1="Submit" btn2="Forgot Password"></app-two-button>
+          <div class="ui fluid small submit button componentBtn" (click)="login()">Login</div>
+          <div><h5 class="hvr-grow createAccount">Create Account</h5></div>
         </div>
         <div class="ui error message"></div>
       </form>
@@ -28,3 +29,59 @@
   </div>
 </div>
 </div>
+
+<div style="display:flex; align-items:center; height:100%" *ngIf="loggedIn()">
+  <div class="loginContainer ui middle aligned center aligned grid"  >
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <div class="content">
+          <h2 class="text"><i class="privacy icon"></i>
+          Logout</h2>
+        </div>
+      <form class="ui large form">
+        <div class="ui segment segment2">
+       
+          <div class="ui fluid small submit button componentBtn" (click)="logout()">Logout</div>
+          
+        </div>
+        <div class="ui error message"></div>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+<!--Create account-->
+<div class="ui modal accountModal">
+  
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <div class="content">
+          <h2 class="text"><i class="privacy icon"></i>
+          Create Account </h2>
+        </div>
+      <form class="ui large form">
+        <div class="ui segment segment2">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="text" placeholder="Email"   [(ngModel)]="email"  name="email">
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" placeholder="Password"  [(ngModel)]="password" name="password">
+            </div>
+          </div>
+          <div class="ui fluid small button componentBtn" id="register" (click)="create()">Submit</div>
+          
+        </div>
+        <div class="ui error message"></div>
+      </form>
+    </div>
+  </div>
+
+</div>
+

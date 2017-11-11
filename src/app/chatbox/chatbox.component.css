@@ -39,7 +39,7 @@ body{
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
-  background-color: #253B40;
+  background-color: #005288;
 }
 
 .btn-circle:hover{
@@ -56,7 +56,7 @@ body{
   overflow-x:hidden;
 }
 .topBar {
-  background: #486B73;
+  background: #005288;
   color: white;
   padding: 10px;
   position: relative;
@@ -111,7 +111,7 @@ time {
 
 
 .send{
-    background-color: #486B73;
+    background-color: #005288;
 }
 
 
