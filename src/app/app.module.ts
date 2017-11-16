@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule,} from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent} from './login/login.component';
 import { AuthService} from './services/auth.service';
@@ -13,21 +13,24 @@ import { ChatboxService } from './services/chatbox.service';
 import { TwoButtonComponent } from './two-button/two-button.component';
 import { DataViewComponent } from './data-view/data-view.component';
 import { DataService } from './services/data.service'
-import { AngelFire } from './services/angelfire.service'
 import { PapaParseService } from 'ngx-papaparse';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
- import { LoggedInGuard } from './services/logged-in.guard';
+import { LoggedInGuard } from './services/logged-in.guard';
+import { RedirectGuard } from './services/redirect.guard';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 const routes: Routes =[
 
  { path: 'login', component: LoginComponent},
  { path: 'home', component: DataViewComponent,  canActivate: [ LoggedInGuard]},
- { path: 'settings', component: SettingsComponent, canActivate: [ LoggedInGuard]},
- { path: '', redirectTo: 'login', pathMatch: 'full', canActivate: [ LoggedInGuard]}, 
+ { path: 'dashboard', component: DashboardComponent, canActivate: [ LoggedInGuard]},
+ { path: '', redirectTo: 'login', pathMatch: 'full', canActivate: [ RedirectGuard]}, 
+ { path: 'settings', redirectTo: 'dashboard', pathMatch: 'full', canActivate: [ LoggedInGuard]}, 
 
 ]
 export const firebaseConfig = {
@@ -47,7 +50,8 @@ export const firebaseConfig = {
     DashboardComponent,
     SettingsComponent,
     TwoButtonComponent,
-    DataViewComponent
+    DataViewComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -56,9 +60,9 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),    
   ],
-  providers: [AuthService, ChatboxService, DataService, PapaParseService, AngularFireDatabase,LoggedInGuard],
+  providers: [AuthService, ChatboxService, DataService, PapaParseService, AngularFireDatabase,LoggedInGuard,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

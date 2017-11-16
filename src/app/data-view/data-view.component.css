@@ -12,6 +12,15 @@
 
 .table{
     margin-bottom:50px;
+    min-width:1000px;
+}
+.dataContainer{
+    min-width:1000px;
+
+}
+
+.splitView{
+        margin-bottom: 50px;
 }
 
 /* Grow */
@@ -31,4 +40,65 @@
 .hvr-grow:active {
     transform: scale(2.5);
     z-index:2;
+}
+
+.buttonFilter{
+    background-color: #005288;
+    color:White;
+    min-width:150px;
+}
+
+.buttonFilter:hover{
+    background-color: #00395f;
+    color:white;
+}
+
+
+.buttonData{
+    width:150px;
+    background-color:white;
+    border: 1px solid;
+    border-color: #EEEEEE;
+    color:black;
+}
+
+.buttonData:hover{
+    background-color: #EEEEEE;
+    color:black;
+}
+
+.dataInactive{
+    display:none;
+}
+
+.filterInput{
+    margin-left:5px;
+    margin-right:5px;
+    width:150px;
+}
+
+/*Summary Section*/
+
+.missionPatch{
+    width:100px;
+    top:20px;
+}
+
+.dataTable{
+    min-width:500px;
+}
+
+.videoContainer{
+    margin:10px;
+}
+
+.headerText{
+    text-align:Center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.imageContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }

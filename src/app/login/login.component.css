@@ -22,7 +22,7 @@
 }
 
 .text{
-    color:#486B73;
+    color:#005288;
     margin-bottom:30px;
 }
 
@@ -31,12 +31,12 @@
 }
 
 .button{
-    background-color: #486B73;
+    background-color: #005288;
     color:White;
 }
 
 .button:hover{
-    background-color: #253B40;
+    background-color: #00395f;
     color:white;
 }
 
@@ -63,4 +63,11 @@
 
 .accountModal{
     height:300px;
+}
+
+.errorContainer{
+    background-color:#fca1a1;
+    border: 1px solid;
+    border-color: #fc6a6a;
+    color: #ff0000;
 }

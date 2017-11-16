@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Chatbox } from '../Chatbox/chatbox.module';
+import { DataService } from '../services/data.service';
+
 @Injectable()
 export class ChatboxService {
     
     chatHistory : Chatbox[] = [];
     
-    constructor(){
+    constructor(private dataService : DataService){
 
-        this.chatHistory.unshift(new Chatbox("HelpBot","Here are some common things you can send!",this.getDate(),1))
-        this.chatHistory.unshift(new Chatbox("HelpBot", "1. Watch a video of the launch. Type: Flight # - video", this.getDate(),1))
-        this.chatHistory.unshift(new Chatbox("HelpBot", "2. Read an article. Type: Flight # - article", this.getDate(),1))
+        var initialBlock = "Here are some common things you can send!\n 1. Launches per Customer (TYPE): \n     LAUNCH---customerName \n 2. Change Flight Summary (TYPE):\n     SUMMARY---flightNumber"
+    
 
+        this.chatHistory.push(new Chatbox("HelpBot",initialBlock
+        ,this.getDate(),1))
     }
 
     getChatHistory(){       
@@ -38,13 +41,24 @@ export class ChatboxService {
     }
 
     sendChat(msg: string){
-        this.chatHistory.unshift(new Chatbox('Ben',msg,this.getDate(),1));
-        this.returnChat();
-  
+        this.chatHistory.push(new Chatbox('Ben',msg,this.getDate(),1));  
     }
-    returnChat(){
-        this.chatHistory.unshift(new Chatbox('John',"This is an automated reply.",this.getDate(),2))
+
+    returnChat(chat:string){
+        
+        this.chatHistory.push(new Chatbox('Chatbot',chat,this.getDate(),2))
     }
     
+    getLaunches(customer:string){
+
+        var count = this.dataService.getLaunchesPer(customer);
+        this.returnChat('The total launches for ' + customer + ' is ' + count);
+    }
+    
+    changeSummary(flightNum:string){
+
+        this.dataService.changeSummary(flightNum);
+    }
+
 
 }

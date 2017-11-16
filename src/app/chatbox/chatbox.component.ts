@@ -13,6 +13,7 @@ export class ChatboxComponent implements OnInit {
   chatHistory : Chatbox[]= [];
   message : string;
   clicked : boolean = false;
+  chatHidden : boolean = true;
 
   constructor(private chatboxService: ChatboxService, public authService: AuthService) { }
 
@@ -24,8 +25,8 @@ export class ChatboxComponent implements OnInit {
   }
 
   sendMessage(){
-
-    this.chatboxService.sendChat(this.message)
+    this.parseChat(this.message);
+    
     this.clearInput();
   }
   
@@ -40,7 +41,28 @@ export class ChatboxComponent implements OnInit {
     
   }
 
+  showChat(){
+    console.log(this.chatHidden)
+    this.chatHidden = !this.chatHidden;
+  }
 
+  parseChat(chat : string){
+      this.chatboxService.sendChat(chat);
+      if(chat.match(/LAUNCH---\w+[A-z+]/g)){
+          var customer = chat.split('---')[1];
+          this.chatboxService.getLaunches(customer)
+      }else if(chat.match(/SUMMARY---\d+/g)){
+          var flightNum = chat.split('---')[1];
+          if(flightNum.match(/^\d+$/)){
+              this.chatboxService.changeSummary(flightNum)
+          }else{
+              this.chatboxService.returnChat("Sorry, that is not a valid flight number");
+          }
+          
+      }else{
+          this.chatboxService.returnChat("Sorry, we don't have an answer to your question.")
+      }
+  }
 
 
 }

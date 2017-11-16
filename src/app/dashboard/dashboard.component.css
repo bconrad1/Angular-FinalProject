@@ -1,0 +1,68 @@
+.column {
+      max-width: 450px;
+    }
+
+.content{
+    margin: 10px;
+}
+
+.middle{
+    width: 100%;
+    
+}
+
+.profileContainer{
+    width: 500px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 5px;
+    border:1px solid;
+    border-color:#cecece;
+  
+}
+
+.text{
+    color:#005288;
+    margin-bottom:30px;
+}
+
+.segment{
+    background-color: #ececec;
+}
+
+.button{
+    background-color: #005288;
+    color:White;
+}
+
+.button:hover{
+    background-color: #00395f;
+    color:white;
+}
+
+
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    margin-top:10px;
+    cursor:pointer;
+}
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    transform: scale(1.1);
+    z-index:2;
+}
+
+
+.avatar{
+    height:125px;
+    margin-bottom:25px;
+}

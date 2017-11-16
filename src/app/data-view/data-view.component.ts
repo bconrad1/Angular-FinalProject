@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Observable } from 'rxjs/Observable';
 import {Launch} from '../launch.model';
+import {AuthService} from '../services/auth.service';
+import {Summary} from './summary.modal';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-data-view',
@@ -11,17 +14,128 @@ import {Launch} from '../launch.model';
 export class DataViewComponent implements OnInit {
   launches: Observable<any[]>;
   launchesArray : Launch[] = [];
+  launchesOriginal : Launch[] = [];
+  launchesDone: Observable<any[]>;
 
-  constructor(private dataService: DataService) { 
-      this.launches = this.dataService.getData();
-      
+  filterCustomer: string;
+  filterYear : string;
+  filterRocket : string;
+
+  summary : Summary = this.dataService.returnSummary();
+  hide : boolean;
+  summaryView = false;
+  dataView = true;
+
+  videoUrl: any;
+
+  constructor(private dataService: DataService, authService: AuthService, private _sanitizer: DomSanitizer) { 
+     
+      console.log("constructing dataview")
+      this.launchesOriginal = dataService.getData();
+      this.launchesArray = this.launchesOriginal;
+        
      
         
       
   }
 
   ngOnInit() {
-   
+      this.launches = this.launchesDone;
+     
+  }
+
+  get getLaunches(){
+    return this.launches;
+  }
+
+  filter(){
+    
+    var yearLength = this.filterYear;
+    var customerLength = this.filterCustomer;
+    var rocketLength = this.filterRocket;
+
+    console.log("filter1");
+
+    this.launchesArray = [];
+    this.launchesOriginal.forEach(data => {
+
+        var cust = data.payload_customer[0];
+        var rock = data.rocket_name;
+        var year = data.launch_year;
+        
+        console.log(rock)
+
+        if( yearLength !=null && customerLength !=null && rocketLength!=null){
+                 
+            if(cust ===this.filterCustomer && rock===this.filterRocket && this.filterYear ===year){
+                this.launchesArray.push(data)
+            }
+        }
+        else if(yearLength!=null && customerLength !=null){
+            if(cust===this.filterCustomer && this.filterYear ===year){
+                this.launchesArray.push(data)
+            }
+        }
+        else if(yearLength!=null){
+     
+          if(this.filterYear === year){
+                this.launchesArray.push(data)
+            }
+        }
+        else if(customerLength !=null && rocketLength!=null){
+          if(cust===this.filterCustomer && rock===this.filterRocket ){
+                this.launchesArray.push(data)
+            }
+        }
+        else if(customerLength !=null){
+          if(cust===this.filterCustomer){
+                this.launchesArray.push(data)
+            }
+        }
+        else if(rocketLength !=null&& yearLength!=null){
+          if(rock===this.filterRocket && this.filterYear ===year){
+                this.launchesArray.push(data)
+            }
+        }
+        else if(rocketLength!=null){
+          if(rock===this.filterRocket ){
+                this.launchesArray.push(data)
+            }
+          }
+        else{
+           this.launchesArray.push(data)
+        }
+        
+  
+    });
+
+    
+  }
+
+  clearFilter(){
+    this.launchesArray = this.launchesOriginal;
+    this.filterCustomer = null;
+    this.filterRocket = null;
+    this.filterYear = null;
+  }
+
+  hideData(){
+      this.dataView=false;
+      this.summaryView =true;
+      
+  }
+
+  hideSummary(){
+      this.dataView=true;
+      this.summaryView =false;
+  }
+
+  get getSummary(){
+        this.summary = this.dataService.returnSummary();
+        return this.summary;
+       
+
+
   }
 
 }

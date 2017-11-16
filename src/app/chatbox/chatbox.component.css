@@ -39,11 +39,11 @@ body{
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
-  background-color: #005288;
+  background-color: #00395f
 }
 
 .btn-circle:hover{
-    background-color: #7B9EA6;
+    background-color: #66889f;
 }
 
 .hideBox{
@@ -115,3 +115,6 @@ time {
 }
 
 
+p{
+     white-space: pre-wrap;
+}

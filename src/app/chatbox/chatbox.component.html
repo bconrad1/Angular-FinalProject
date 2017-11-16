@@ -8,17 +8,17 @@
                           <h3 class="panel-title"><i class="comments icon"></i> Chat</h3>
                         </div>
                         <div class="col-md-6 collapseIcon">
-                          <button type="button" class="btn btn-default btn-circle test"><i class="angle down icon"></i></button>
+                          <button type="button" class="btn btn-default btn-circle test" (click)="showChat()"><i [ngClass]="{'angle up icon': chatHidden, 'angle down icon':!chatHidden}"></i></button>
                         </div>
                     </div>
              
                 </div>
-                <div class="hideChat" >
+                <div class="hideChat" [ngClass]="{'hideBox' : chatHidden}">
                   <div class="panel-body messageContainer">
                       <div class="row messageContainerInner {{c.userNumber === 1 ? 'base_sent1': 'base_sent2'}}" *ngFor="let c of chatHistory">
                           <div class="col-md-10 col-xs-10 message">
                               <div class="messages sent">
-                                  <p>{{c.text}}</p>
+                                  <pre><p>{{c.text}}</p></pre>
                                   <time>{{c.user}} • {{c.date}}</time>
                               </div>
                           </div>

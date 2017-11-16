@@ -1,3 +1,37 @@
-<p>
-  dashboard works!
-</p>
+<div style="display:flex; align-items:center; height:100%" >
+<div class="profileContainer ui middle aligned center aligned grid"  >
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <div class="content">
+          <h2 class="text"><i class="id badge icon"></i>
+          Personal Settings</h2>
+        </div>
+    <div class="row">
+      <div class="col-md-6 offset-3">
+        <img src="{{avatar}}" class="avatar "/>
+      </div>
+    </div>
+      <form class="ui large form">
+        <div class="ui segment segment2">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="text" placeholder="Display Name"  [(ngModel)]="name" name="name">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="ui left icon input">
+              <i class=""></i>
+              <input type="text" placeholder="Avatar Link"  [(ngModel)]="avatar" name="avatar">
+            </div>
+          </div>
+          <div class="ui fluid small submit button componentBtn" (click)="updateProfile()">Submit Changes</div>
+        </div>
+        <div class="ui error message"></div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+

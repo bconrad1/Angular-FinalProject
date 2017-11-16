@@ -9,15 +9,27 @@ import {AuthService} from './services/auth.service';
 })
 export class AppComponent implements OnInit {
 
-  time : String;
-  constructor(private router: Router, private auth: AuthService){
+  time : string;
+  signedIn : boolean;
+  avatar: string;
+  name: string;
+  
 
+  constructor(private router: Router, private auth: AuthService){
+      
+       
+      if (this.router.url != 'home' && this.router.url != 'dashboard' && this.router.url != 'login' ) {
+        this.router.navigateByUrl("home")
+
+      }
+      
+    
   };
 
   ngOnInit(){
 
-  
     this.utcTime();
+ 
   }
 
   utcTime(): void {
@@ -27,12 +39,21 @@ export class AppComponent implements OnInit {
     }, 1000);  
   }
 
-  loggedin(){
-    console.log("checking")
-    console.log(this.auth.authenticated);
-  }
   
+  get getAvatar(): string{
+       if(this.auth.authenticated){
+        var settings = this.auth.getUserSettings();
+         this.avatar = settings.avatar;
+         return this.avatar;
+       }
+  }
+
   logout(){
     this.auth.signOut();
+    this.router.navigateByUrl('login');
   }
+
+
+
+
 }

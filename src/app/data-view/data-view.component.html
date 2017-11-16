@@ -1,4 +1,54 @@
-<table class="ui striped table" id="dataTable">
+
+<div class="middle aligned center dataContainer" >
+<div class="ui middle aligned center splitView"  >
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <div class="ui">
+         
+        <div class="ui buttons">
+          <button class="ui button buttonData btnSummary " (click)="hideData()">Summary</button>
+          <button class="ui button buttonData btnData" (click)="hideSummary()">Data</button>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- MAIN DATA CLASS -->
+<div class="dataView" *ngIf="dataView">
+<div class="middle aligned center dataContainer" >
+<div class="ui middle aligned center"  >
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+      <form class="ui large form">
+        <div class="ui segment segment2">
+
+          <div class=" three wide fields">
+              <div class=" field">
+                <label>Year</label>
+                <input type="text" name="year" maxlength="4" placeholder="Year" [(ngModel)]="filterYear">
+              </div>
+              <div class="field">
+                <label>Rocket</label>
+                <input type="text" name="rocket" maxlength="10" placeholder="Rocket" [(ngModel)]="filterRocket">
+              </div>
+              <div class="field">
+                <label>Customer</label>
+                <input type="text" name="customer"  placeholder="Customer" [(ngModel)]="filterCustomer">
+              </div>
+          </div>
+              <div class="ui medium  button buttonFilter componentBtn" (click)="filter()">Filter</div>
+              <div class="ui medium  button buttonFilter componentBtn" (click)="clearFilter()">Clear</div>
+        </div>
+        <div class="ui error message"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<table class="ui striped table sortable" id="dataTable">
   <thead>
     <tr>
       <th></th>
@@ -13,7 +63,7 @@
       <th>Payload Size</th>
       <th>Customer/s</th>
   </tr></thead>
-  <tbody *ngFor="let e of launches | async" >
+  <tbody *ngFor="let e of launchesArray" >
     <tr>
       <td><img src="{{e.mission_patch}}" class="image_patch hvr-grow"></td>
       <td>{{e.flight_number}}</td>
@@ -35,4 +85,79 @@
   </tfoot>
 </table >
 
+</div>
+</div>
 
+<!--SUMMARY CLASS -->
+
+<div class="dataView" *ngIf="summaryView">
+
+<div class="ui middle aligned center videoContainer"  >
+  <div class="ui middle aligned center aligned grid">
+  <div class="ui segment segment2" >
+     <form class="ui large form">
+          <h2 class="headerText">
+            Featured Launch -- Launch #{{summary.flightNum}}
+          </h2>
+          
+            <div class="ui form">
+              <div class="message">
+              <iframe width="880" height="495" [src]="getSummary.video" 
+              frameborder="0" ></iframe>
+            </div>
+          </div>
+          </form>
+      </div>
+    </div>
+    </div>
+
+
+
+
+
+<div class="middle aligned center dataContainer" >
+<div class="ui middle aligned center"  >
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+      <form class="ui large form">
+        <div class="ui segment segment2" >
+      
+          <div class="row">
+              <div class="col-md-2 imageContainer">
+                <img src="{{getSummary.missionPatch}}" class="missionPatch"/>
+              </div>
+              <div class="col-md-10">
+                <table class="ui definition table dataTable">
+                    <tbody>
+                      <tr>
+                        <td class="two wide column">Year</td>
+                        <td>{{getSummary.year}}</td>
+                      </tr>
+                      <tr>
+                        <td>Date</td>
+                        <td>{{getSummary.launchDate}}</td>
+                      </tr>
+                      <tr>
+                        <td>Customers</td>
+                        <td>{{getSummary.customer}}</td>
+                      </tr>
+                      <tr>
+                        <td>Payload</td>
+                        <td>{{getSummary.payload}}</td>
+                      </tr>
+                      <tr>
+                        <td>Article</td>
+                        <td><a [href]="summary.article">Article Link</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+        </div>
+        <div class="ui error message"></div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
