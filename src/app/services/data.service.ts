@@ -97,6 +97,30 @@ export class DataService {
     getResults(){
         return this.launches;
     }
+    addLaunch(launch: Launch){
+        
+            this.afs.collection('launches').add({
+                'flight_number':launch.flight_number, 
+                'launch_year':launch.launch_year,
+                'launch_date': launch.launch_date,
+                'rocket_id':launch.rocket_id,
+                'rocket_name':launch.rocket_name,
+                'rocket_type':launch.rocket_type,
+                'launch_site':launch.launch_site,
+                'payload_type':launch.payload_type,
+                'payload_customer':launch.payload_customer,
+                'payload_mass_lbs':launch.payload_mass_lbs,
+                'launch_success':launch.launch_success,
+                'launch_land':launch.launch_success,
+                'mission_patch':launch.mission_patch,
+                'mission_video':launch.mission_video,
+                'mission_article':launch.mission_article,
+                'details':launch.details
+        }).then((res) => {
+            console.log("Successfully added")
+            location.reload();
+        }).catch(err=>console.log(err));
+    }
 
     //Inital run 
     sendToFirebase(){

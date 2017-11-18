@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Observable } from 'rxjs/Observable';
 import {Launch} from '../launch.model';
@@ -12,6 +12,32 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./data-view.component.css']
 })
 export class DataViewComponent implements OnInit {
+
+  //New Laiunch
+
+
+  flightNumber: string;
+  launchYear: string;
+  launchDate: string;
+  rocketId: string;
+  rocketName: string;
+  rocketType: string;
+  launchSite: string;
+  payloadType: string;
+  payloadCustomer: string;
+  payloadMass: number;
+  launchSuccess: boolean;
+  launchLand: boolean;
+  missionPatch: string;
+  missionVideo: string;
+  missionArticle:string;
+  details: string;
+
+
+
+
+
+
   launches: Observable<any[]>;
   launchesArray : Launch[] = [];
   launchesOriginal : Launch[] = [];
@@ -27,6 +53,7 @@ export class DataViewComponent implements OnInit {
   dataView = true;
 
   videoUrl: any;
+  addLaunch : boolean = false;
 
   constructor(private dataService: DataService, authService: AuthService, private _sanitizer: DomSanitizer) { 
      
@@ -39,11 +66,36 @@ export class DataViewComponent implements OnInit {
       
   }
 
+  databaseLaunch(){
+
+      var customerArray=[];
+
+      if(this.payloadCustomer.includes(',')){
+          var customers = this.payloadCustomer.split(',');
+          customerArray = customers;
+      }else{
+          customerArray.push(this.payloadCustomer);
+      }
+
+      var launch = new Launch(this.flightNumber,this.launchYear,this.launchDate,this.rocketId,this.rocketName,this.rocketType,
+                this.launchSite,this.payloadType, customerArray,this.payloadMass,this.launchSuccess, this.launchLand,
+                this.missionPatch,this.missionVideo,this.missionPatch,this.details);
+
+      this.dataService.addLaunch(launch);
+      
+  }
+
   ngOnInit() {
       this.launches = this.launchesDone;
      
   }
 
+  showLaunch(){
+      this.addLaunch = !this.addLaunch;
+  }
+  get getAddLaunch(){
+      return this.addLaunch;
+  }
   get getLaunches(){
     return this.launches;
   }
@@ -54,8 +106,6 @@ export class DataViewComponent implements OnInit {
     var customerLength = this.filterCustomer;
     var rocketLength = this.filterRocket;
 
-    console.log("filter1");
-
     this.launchesArray = [];
     this.launchesOriginal.forEach(data => {
 
@@ -63,7 +113,6 @@ export class DataViewComponent implements OnInit {
         var rock = data.rocket_name;
         var year = data.launch_year;
         
-        console.log(rock)
 
         if( yearLength !=null && customerLength !=null && rocketLength!=null){
                  

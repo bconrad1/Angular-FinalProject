@@ -60,7 +60,11 @@ export class LoginComponent{
 
   create(){
       this.authService.emailSignUp(this.email, this.password, this.display, this.avatar)
-          .then(data => this.router.navigateByUrl('home'))
+          .then(data => {
+            
+            this.router.navigateByUrl('home')
+          
+        })
           .catch((err) => {
 
           });

@@ -1,23 +1,23 @@
 
-<div class="middle aligned center dataContainer" >
+<div class="middle aligned center dataContainer" *ngIf="!addLaunch">
 <div class="ui middle aligned center splitView"  >
   <div class="ui middle aligned center aligned grid">
     <div class="column">
         <div class="ui">
          
         <div class="ui buttons">
-          <button class="ui button buttonData btnSummary " (click)="hideData()">Summary</button>
-          <button class="ui button buttonData btnData" (click)="hideSummary()">Data</button>
+          <button class="ui button  btnSummary {{summaryView === true ? 'buttonFilter' : 'buttonData'}} " (click)="hideData()">Summary</button>
+          <button class="ui button  btnData {{dataView === true ? 'buttonFilter' : 'buttonData'}}" (click)="hideSummary()">Data</button>
         </div>
         </div>
     </div>
   </div>
 </div>
-
+</div>
 
 
 <!-- MAIN DATA CLASS -->
-<div class="dataView" *ngIf="dataView">
+<div class="dataView" *ngIf="dataView && !addLaunch">
 <div class="middle aligned center dataContainer" >
 <div class="ui middle aligned center"  >
   <div class="ui middle aligned center aligned grid">
@@ -39,8 +39,9 @@
                 <input type="text" name="customer"  placeholder="Customer" [(ngModel)]="filterCustomer">
               </div>
           </div>
-              <div class="ui medium  button buttonFilter componentBtn" (click)="filter()">Filter</div>
-              <div class="ui medium  button buttonFilter componentBtn" (click)="clearFilter()">Clear</div>
+              <div class="ui medium  button buttonFilter componentBtn" (click)="filter()"><i class="minus square outline icon"></i>Filter</div>
+              <div class="ui medium  button buttonFilter componentBtn" (click)="clearFilter()"><i class="refresh icon"></i>Clear</div>
+              <div class="ui medium button buttonFilter componentBtn" (click)="showLaunch()"><i class="plus icon"></i>Add Launch</div>
         </div>
         <div class="ui error message"></div>
       </form>
@@ -88,9 +89,21 @@
 </div>
 </div>
 
+
+
+
+
+
+
+ 
+           
+
+
+
+
 <!--SUMMARY CLASS -->
 
-<div class="dataView" *ngIf="summaryView">
+<div class="dataView" *ngIf="summaryView  && !addLaunch">
 
 <div class="ui middle aligned center videoContainer"  >
   <div class="ui middle aligned center aligned grid">
@@ -161,3 +174,116 @@
 </div>
 </div>
 </div>
+
+
+<!--Add Launch -->
+<div class="outerAddLaunch" *ngIf="getAddLaunch">
+<div class=" ui middle aligned center aligned grid addLaunchContainer">
+  <div class="row">
+      <div class="col-md-10"></div>
+      <div class="col-md-2 " style="text-align:right"><i class="remove icon hvr-grow" (click)="showLaunch()"></i></div>
+      
+  </div>
+         <div class="content">
+          <h2 class="text"> Add Launch </h2>
+        </div>
+  <div class="ui middle aligned center aligned grid row">
+    <div class="col-md-12">
+ 
+      <form class="ui large form ">
+        <div class="ui segment segment2 ">
+
+          <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Flight Number" [(ngModel)]="flightNumber"  name="flightNumber">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Launch Year"  [(ngModel)]="launchYear" name="launchYear">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Launch Date - MM/DD/YYYY"  [(ngModel)]="launchDate" name="launchDate">
+            </div>
+          </div>
+          
+          <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Rocket Id"  [(ngModel)]="rocketId" name="rocketId">
+            </div>
+          </div>
+
+       <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Rocket Name"  [(ngModel)]="rocketName" name="rocketName">
+            </div>
+          </div>
+
+       <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Rocket Type"  [(ngModel)]="rocketType" name="rocketType">
+            </div>
+          </div>
+       <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Launch Site"  [(ngModel)]="launchSite" name="launchSite">
+            </div>
+          </div>
+       <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Payload Type"  [(ngModel)]="payloadType" name="payloadType">
+            </div>
+          </div>
+       <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Payload Customer"  [(ngModel)]="payloadCustomer" name="payloadCustomer">
+            </div>
+          </div>
+        <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Payload Mass"  [(ngModel)]="payloadMass" name="payloadMass">
+            </div>
+          </div> 
+        <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Launch Success"  [(ngModel)]="launchSuccess" name="launchSuccess">
+            </div>
+          </div>
+        <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Launch Land"  [(ngModel)]="launchLand" name="launchLand">
+            </div>
+          </div>
+        <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Mission Patch Link"  [(ngModel)]="missionPatch" name="missionPatch">
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Mission Video Link"  [(ngModel)]="missionVideo" name="missionVideo">
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Mission Article"  [(ngModel)]="missionArticle" name="missionArticle">
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Details"  [(ngModel)]="details" name="details">
+            </div>
+          </div>
+          <div class="ui fluid small submit button componentBtn buttonFilter" (click)="databaseLaunch()">Add Launch</div>
+        </div>
+        <div class="ui message errorContainer"> Error Logging In</div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+

@@ -19,6 +19,18 @@
 
 }
 
+.addLaunchContainer{
+ 
+    width: 55%;
+    margin: 0 auto;
+    background: white;
+    border-radius: 5px;
+    border:1px solid;
+    border-color:#cecece;
+  
+
+}
+
 .splitView{
         margin-bottom: 50px;
 }
@@ -101,4 +113,19 @@
     display:flex;
     justify-content: center;
     align-items: center;
+}
+
+.outerAddLaunch{
+    display:flex; 
+    align-items:center; 
+    height:100%; 
+  
+}
+
+.innerLaunchContainer{
+    width:90%;
+}
+
+.content{
+    margin-bottom:15px;
 }

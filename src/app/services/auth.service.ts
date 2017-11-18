@@ -149,7 +149,6 @@ emailSignUp(email: string, password: string, name: string, avatar:string) {
   }
 
   getUserSettings(){
-    console.log(this.authState.email)
     var retrievedObject = localStorage.getItem(this.authState.email);
     return JSON.parse(retrievedObject)
 
