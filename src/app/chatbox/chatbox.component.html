@@ -1,4 +1,4 @@
-<div class="container "  *ngIf="loggedIn()">
+<div class="container"  *ngIf="loggedIn()" style="z-index:10">
     <div class="row chat col-xs-5 col-md-3" style="margin-left:10px;">
         <div class="col-xs-12 col-md-12">
         	<div class="chatContainer panel-default">
@@ -8,7 +8,7 @@
                           <h3 class="panel-title"><i class="comments icon"></i> Chat</h3>
                         </div>
                         <div class="col-md-6 collapseIcon">
-                          <button type="button" class="btn btn-default btn-circle test" (click)="showChat()"><i [ngClass]="{'angle up icon': chatHidden, 'angle down icon':!chatHidden}"></i></button>
+                          <button type="button" class="btn btn-default btn-circle test" (click)="showChat()"><i [ngClass]="{'angle down icon': !chatHidden , 'angle up icon':chatHidden}"></i></button>
                         </div>
                     </div>
              

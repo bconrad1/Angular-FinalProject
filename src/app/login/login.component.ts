@@ -3,7 +3,7 @@ import {AuthService} from '../services/auth.service';
 import { DataService} from '../services/data.service';
 import { Router, NavigationEnd } from '@angular/router';
 import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
-declare var ga: Function;
+declare var ga:Function;
 
 @Component({
   selector: 'app-login',
@@ -23,24 +23,16 @@ export class LoginComponent{
   avatar : string;
   display: string;
 
-  constructor(private router: Router, public authService: AuthService, private dataService: DataService) { 
-               
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        ga('set', 'page', event.urlAfterRedirects);
-        ga('send', 'pageview');
-      }
-    });
-     //ga('send', { test: 'event', eventCategory: 'finalCSC436', eventAction: 'login', eventLabel: 'success'});
-     console.log('constructing login');
+  constructor(private router: Router, public authService: AuthService, private dataService: DataService) {  }
+ 
     
-  }
+  ngOnInit(){}
 
 
 
   login(): void {
       this.authService.emailLogin(this.email, this.password).then(data => {
-          
+          ga('send', { hitType: 'event', eventCategory: 'csc436', eventAction: 'login', eventLabel: 'authorized'});
 
       }).catch((err) => this.loginError=true);
         
@@ -59,6 +51,8 @@ export class LoginComponent{
   }
 
   create(){
+
+      if(this.email && this.password && this.display && this.avatar){
       this.authService.emailSignUp(this.email, this.password, this.display, this.avatar)
           .then(data => {
             
@@ -68,7 +62,9 @@ export class LoginComponent{
           .catch((err) => {
 
           });
-      
+      }else{
+        this.loginError=true;
+      }
   }
 
   get isRegistering(){

@@ -1,103 +1,115 @@
-
-
 <div style="display:flex; align-items:center; height:100%" *ngIf="!loggedIn() && !isRegistering ">
-<div class="loginContainer ui middle aligned center aligned grid"  >
-  <div class="ui middle aligned center aligned grid">
-    <div class="column">
+  <div class="loginContainer ui middle aligned center aligned grid">
+    <div class="ui middle aligned center aligned grid">
+      <div class="column">
         <div class="content">
-          <h2 class="text"><i class="privacy icon"></i>
-          Log-in </h2>
+          <h2 class="text"><i class="privacy icon"></i> Log-in </h2>
         </div>
-      <form class="ui large form">
-        <div class="ui segment segment2">
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="user icon"></i>
-              <input type="text" placeholder="Email"   [(ngModel)]="email"  name="email">
+        <form class="ui large form">
+          <div class="ui segment segment2">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" placeholder="Email" [(ngModel)]="email" name="email">
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" placeholder="Password" [(ngModel)]="password" name="password">
+              </div>
+            </div>
+            <div class="ui fluid small submit button componentBtn" (click)="login()">Login</div>
+            <div>
+              <h5 class="hvr-grow createAccount" (click)="register()">Create Account</h5>
             </div>
           </div>
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="lock icon"></i>
-              <input type="password" placeholder="Password"  [(ngModel)]="password" name="password">
-            </div>
-          </div>
-          <div class="ui fluid small submit button componentBtn" (click)="login()">Login</div>
-          <div><h5 class="hvr-grow createAccount" (click)="register()">Create Account</h5></div>
-        </div>
-        <div class="ui message errorContainer" *ngIf="loginError"> Error Logging In</div>
-      </form>
+          <div class="ui message errorContainer" *ngIf="loginError"> Error Logging In</div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 <div style="display:flex; align-items:center; height:100%" *ngIf="loggedIn()">
-  <div class="loginContainer ui middle aligned center aligned grid"  >
-  <div class="ui middle aligned center aligned grid">
-    <div class="column">
+  <div class="loginContainer ui middle aligned center aligned grid">
+    <div class="ui middle aligned center aligned grid">
+      <div class="column">
         <div class="content">
-          <h2 class="text"><i class="privacy icon"></i>
-          Logout</h2>
+          <h2 class="text">Landing Page</h2>
         </div>
-      <form class="ui large form">
-        <div class="ui segment segment2">
-       
-          <div class="ui fluid small submit button componentBtn" (click)="logout()">Logout</div>
-          
+        <br>
+
+        <div style="word-wrap: break-word" class="landingContainer">
+
+          <h4>
+            The home page provides 2 views, one for a data summary, and the other for a table view of the data. Clicking on the newspaper
+            icon in the table will give you a more detailed look at some of the launches.
+            <br><br> The dashboard page allows you to change your displayname and icon. Or if you like, you can click the
+            logout button below and login with another user.
+            <br><br> The chatbot will allow you to view different flights on the summary page, and view information about
+            succesfull launch and landings.
+          </h4>
+
+
         </div>
-        <div class="ui error message"></div>
-      </form>
+        <form class="ui large form">
+          <div class="ui segment segment2">
+
+            <div class="ui fluid small submit button componentBtn" (click)="logout()">Logout</div>
+
+          </div>
+          <div class="ui error message"></div>
+        </form>
+      </div>
     </div>
-  </div>
   </div>
 </div>
 
 
 
 <div style="display:flex; align-items:center; height:100%" *ngIf="isRegistering">
-<div class="loginContainer ui middle aligned center aligned grid"  >
-  <div class="ui middle aligned center aligned grid">
-    <div class="column">
+  <div class="loginContainer ui middle aligned center aligned grid">
+    <div class="ui middle aligned center aligned grid">
+      <div class="column">
         <div class="content">
-          <h2 class="text"><i class="privacy icon"></i>
-          Register </h2>
+          <h2 class="text"><i class="privacy icon"></i> Register </h2>
         </div>
-      <form class="ui large form">
-        <div class="ui segment segment2">
-         <div class="field">
-            <div class="ui left icon input">
-              <i class="user icon"></i>
-              <input type="text" placeholder="Enter Display Name"   [(ngModel)]="display"  name="display">
+        <form class="ui large form">
+          <div class="ui segment segment2">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" id="display" placeholder="Enter Display Name" [(ngModel)]="display" name="display" required minlength="4">
+              </div>
             </div>
-          </div>
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="user icon"></i>
-              <input type="text" placeholder="Enter Avatar Icon Link"   [(ngModel)]="avatar"  name="avatar">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" placeholder="Enter Avatar Icon Link" [(ngModel)]="avatar" name="avatar" required>
+              </div>
             </div>
-          </div>
 
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="user icon"></i>
-              <input type="text" placeholder="Enter Email Address"   [(ngModel)]="email"  name="email">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" placeholder="Enter Email Address" [(ngModel)]="email" name="email" required minlength="4">
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" placeholder="Enter Password" [(ngModel)]="password" name="password" required minlength="4">
+              </div>
+            </div>
+            <div class="ui fluid small submit button componentBtn" (click)="create();">Register</div>
+            <div>
+              <h5 class="hvr-grow createAccount">Create Account</h5>
             </div>
           </div>
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="lock icon"></i>
-              <input type="test" placeholder="Enter Password"  [(ngModel)]="password" name="password">
-            </div>
-          </div>
-          <div class="ui fluid small submit button componentBtn" (click)="create();">Register</div>
-          <div><h5 class="hvr-grow createAccount">Create Account</h5></div>
-        </div>
-        <div class="ui message errorContainer" *ngIf="loginError"></div>
-      </form>
+          <div class="ui message errorContainer" *ngIf="loginError">Please check inputs</div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
-</div>
-
-

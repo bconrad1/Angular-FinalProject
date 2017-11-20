@@ -129,3 +129,22 @@
 .content{
     margin-bottom:15px;
 }
+.detailHide{
+    display:none;
+
+}
+.newspaper:hover{
+    cursor:pointer;
+}
+
+.errorContainer{
+    background-color:#fca1a1;
+    border: 1px solid;
+    border-color: #fc6a6a;
+    color: #fc6a6a;
+}
+
+.inputDisable{
+    pointer-events: none;
+    background-color: #e6e6e6 !important;
+}

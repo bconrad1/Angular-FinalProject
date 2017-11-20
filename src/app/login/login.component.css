@@ -20,6 +20,14 @@
     border-color:#cecece;
   
 }
+input.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+}
+
+
+input.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
 
 .text{
     color:#005288;
@@ -69,5 +77,9 @@
     background-color:#fca1a1;
     border: 1px solid;
     border-color: #fc6a6a;
-    color: #ff0000;
+    color: #fc6a6a;
+}
+
+.landingContainer{
+    margin-bottom:20px;
 }

@@ -1,37 +1,29 @@
-
-
-
 <div class="ui menu appNav ">
   <div class="header item">
     <div>
-   
-      <img src='assets/spaceXLogo.png' class="headerLogo"/>
-  
+
+      <img src='assets/spaceXLogo.png' class="headerLogo" />
+
     </div>
   </div>
-    <a [routerLink]="['/login']" class="item navLink activeNav">Login</a>
-    <a [routerLink]="['/home']" class="navLink item ">Home</a>
-    <a [routerLink]="['/dashboard']" class="item navLink ">Dashboard</a>
-  
-   <div class="right item avatar">
-      <div class="item"><img src="{{getAvatar}}"/></div>
-   </div>
-   <div class="item clock">
-      <i class="calendar icon"></i>
-      <div class="item">{{time}}</div>
-   </div>
-    <a class="item" (click)='logout()'>Logout</a>
-    
+  <a [routerLink]="['/login']" class="item navLink activeNav">Login</a>
+  <a [routerLink]="['/home']" class="navLink item ">Home</a>
+  <a [routerLink]="['/dashboard']" class="item navLink ">Dashboard</a>
+
+  <div class="right item avatar">
+    <div class="item"><img src="{{getAvatar}}" /></div>
+  </div>
+  <div class="item clock">
+    <i class="calendar icon"></i>
+    <div class="item">{{time}}</div>
+  </div>
+  <a class="item" (click)='logout()'>Logout</a>
+
 </div>
-
-
-
 
 <div id="content" style="height:90%">
-    <div class="container container-fluid " style="height:100%; width:65%">
-      <app-chatbox></app-chatbox>
-      <router-outlet style="margin-bottom:50px" class = "active"></router-outlet>
-    </div>
+  <div class="container container-fluid " style="height:100%; width:65%">
+    <app-chatbox></app-chatbox>
+    <router-outlet style="margin-bottom:50px" class="active"></router-outlet>
+  </div>
 </div>
-
- 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {Person} from '../person.model';
-import { Router} from '@angular/router';
-
+import { Router, NavigationEnd} from '@angular/router';
+declare var ga:Function;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -16,7 +16,6 @@ export class DashboardComponent implements OnInit {
   currentUser : Person[] =[] ;
 
   constructor(public authService: AuthService, private router: Router) { 
-
 
   }
 
